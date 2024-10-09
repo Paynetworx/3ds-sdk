@@ -1,5 +1,5 @@
 {
-  "name": "sdk",
+  "name": "3ds-sdk",
   "version": "1.0.0",
   "description": "",
   "version": "1.0.0",
@@ -11,7 +11,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "co:login": "aws codeartifact login --tool npm --repository pnx --domain paynetworx --namespace pnx"
   },
   "repository": {
     "type": "git",
