@@ -11,7 +11,7 @@ export function GatherBrowserData(window_size: string) {
     browserColorDepth: screen.colorDepth.toString(),
     browserScreenHeight: screen.height.toString(),
     browserScreenWidth: screen.width.toString(),
-    browserTZ:  (new Date()).getTimezoneOffset(),
+    browserTZ:  (new Date()).getTimezoneOffset().toString(),
     challengeWindowSize:  window_size.toString()
   }
 }
