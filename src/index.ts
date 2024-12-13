@@ -6,7 +6,9 @@ export const CHALLENGE_WINDOW_SIZE_Full_screen = "05"
 
 export async function GatherBrowserData(window_size: string, echo_url: string) {
 
-  const response = await fetch(echo_url)
+  const response = await fetch(echo_url, {
+    method:'POST'
+  })
   const data = await response.json() as {
     id: string
   }
