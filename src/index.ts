@@ -8,10 +8,10 @@ export function GatherBrowserData(window_size: string) {
   return {
     browserJavaEnabled: navigator.javaEnabled,
     browserLanguage: navigator.language,
-    browserColorDepth: screen.colorDepth,
-    browserScreenHeight: screen.height,
-    browserScreenWidth: screen.width,
+    browserColorDepth: screen.colorDepth.toString(),
+    browserScreenHeight: screen.height.toString(),
+    browserScreenWidth: screen.width.toString(),
     browserTZ:  (new Date()).getTimezoneOffset(),
-    challengeWindowSize:  window_size
+    challengeWindowSize:  window_size.toString()
   }
 }
