@@ -115,7 +115,7 @@ export async function processPayment<T>(args: {
   Get3dsMethodResponse: (threeDSServerTransID: string) => Promise<CallbackResponse<T>>
   GetChallengeResponse: (threeDSServerTransID: string) => Promise<CallbackResponse<T>>
 }): Promise<T | undefined>{
-    const browser_info=await GatherBrowserData(args.paynetworx_url,`${args.paynetworx_url}/browser_info`)
+    const browser_info=await GatherBrowserData(args.challenge_window_size,`${args.paynetworx_url}/browser_info`)
     let challenge_required = false
 
     const backend_payment_response = await args.sendPaymentToBackend(browser_info) 
