@@ -113,7 +113,9 @@ export async function processPayment<T>(args: {
   challenge_window_size: string
   sendPaymentToBackend: (browser_info: unknown) => Promise<CallbackResponse<T>>
   Get3dsMethodResponse: (threeDSServerTransID: string) => Promise<CallbackResponse<T>>
+  StartChallengeCallback?: () => Promise<unknown>
   GetChallengeResponse: (threeDSServerTransID: string) => Promise<CallbackResponse<T>>
+  FinishChallengeCallback?: () => Promise<unknown>
 }): Promise<T | undefined>{
     const browser_info=await GatherBrowserData(args.challenge_window_size,`${args.paynetworx_url}/browser_info`)
     let challenge_required = false
@@ -152,12 +154,18 @@ export async function processPayment<T>(args: {
     }
 
     if(challenge_required){
+      if(args.StartChallengeCallback){
+        await args.StartChallengeCallback() 
+      }
       await SubmitChallenge({
         acsURL: acsURL,
         encodedCReq: encodedCreq
       })
       const challenge_response = await args.GetChallengeResponse(backend_payment_response.threeDSServerTransID)
       out = challenge_response.PaymentResponse
+      if(args.FinishChallengeCallback){
+        await args.FinishChallengeCallback() 
+      }
     }    
     return out
 };
