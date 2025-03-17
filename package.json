@@ -12,17 +12,11 @@
     "build": "tsup",
     "co:login": "aws codeartifact login --tool npm --repository pnx --domain paynetworx --namespace pnx"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@bitbucket.org/paynetworx/sdk.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://bitbucket.org/paynetworx/sdk/issues"
   },
-  "homepage": "https://bitbucket.org/paynetworx/sdk#readme",
   "devDependencies": {
     "tsup": "^8.3.0",
     "typescript": "^5.6.2"
