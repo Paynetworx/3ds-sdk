@@ -111,13 +111,15 @@ export interface CallbackResponse<T> {
 export async function processPayment<T>(args: {
   paynetworx_url: string
   challenge_window_size: string
+  browser_info_path?: string
   sendPaymentToBackend: (browser_info: unknown) => Promise<CallbackResponse<T>>
   Get3dsMethodResponse: (threeDSServerTransID: string) => Promise<CallbackResponse<T>>
   StartChallengeCallback?: () => Promise<HTMLElement>
   GetChallengeResponse: (threeDSServerTransID: string) => Promise<CallbackResponse<T>>
   FinishChallengeCallback?: () => Promise<unknown>
 }): Promise<T | undefined>{
-    const browser_info=await GatherBrowserData(args.challenge_window_size,`${args.paynetworx_url}/browser_info`)
+    const browser_info_path = args.browser_info_path ?? '/browser_info'
+    const browser_info=await GatherBrowserData(args.challenge_window_size,`${args.paynetworx_url}${browser_info_path}`)
     let challenge_required = false
 
     const backend_payment_response = await args.sendPaymentToBackend(browser_info) 
